@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by LaunchCode
  */
-public class JobData {
+class JobData {
 
     private static final String DATA_FILE = "resources/job_data.csv";
     private static Boolean isDataLoaded = false;
@@ -28,7 +28,7 @@ public class JobData {
      * @param field The column to retrieve values from
      * @return List of all of the values of the given field
      */
-    public static ArrayList<String> findAll(String field) {
+    static ArrayList<String> findAll(String field) {
 
         // load data, if not already loaded
         loadData();
@@ -46,7 +46,7 @@ public class JobData {
         return values;
     }
 
-    public static ArrayList<HashMap<String, String>> findAll() {
+    static ArrayList<HashMap<String, String>> findAll() {
 
         // load data, if not already loaded
         loadData();
@@ -65,7 +65,7 @@ public class JobData {
      * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
-    public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
+    static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
         // load data, if not already loaded
         loadData();
@@ -84,7 +84,7 @@ public class JobData {
         return jobs;
     }
 
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         // load data, if not already loaded
         loadData();
@@ -94,7 +94,7 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             for (String key : row.keySet()) {
                 String aValue = row.get(key).toLowerCase();
-                if (value.contains(value.toLowerCase()) && !jobs.contains(row)) {
+                if (aValue.contains(value.toLowerCase()) && !jobs.contains(row)) {
                     jobs.add(row);
                 }
             }
