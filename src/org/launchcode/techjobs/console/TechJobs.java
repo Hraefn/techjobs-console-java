@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-/**
- * Created by LaunchCode
- */
 public class TechJobs {
 
     private static Scanner in = new Scanner(System.in);
@@ -43,6 +40,7 @@ public class TechJobs {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
+                    results.sort(String::compareToIgnoreCase);
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
                     // Print list of skills, employers, etc
@@ -61,7 +59,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -110,7 +108,20 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) {
+            System.out.println("Sorry, no job results found.");
+        }
+        else {
 
-        System.out.println("printJobs is not implemented yet");
+            for (HashMap<String, String> entry:someJobs) {
+                System.out.println("*****");
+                for (String key : entry.keySet()) {
+                    String value = entry.get(key);
+                    System.out.println(key + ": " + value);
+                }
+                System.out.println("*****");
+            }
+        }
     }
 }
+
